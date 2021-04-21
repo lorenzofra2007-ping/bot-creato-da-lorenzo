@@ -177,32 +177,32 @@ async def event_friend_request(request):
         if request.display_name not in data['BlockList']:
             try:
                 await request.accept()
-                print(f" [PYBOT] [{getTime()}] Accepted friend request from: {request.display_name}")
+                print(f"   [{getTime()}] Accepted friend request from: {request.display_name}")
             except Exception as e:
                 pass
         elif request.display_name in data['BlockList']:
-            print(f" [PYBOT] [{getTime()}] Never Accepted friend reqest from: " + Fore.RED + f"{request.display_name}")
+            print(f"  [{getTime()}] Never Accepted friend reqest from: " + Fore.RED + f"{request.display_name}")
     if data['friendaccept'].lower() == 'false':
         if request.display_name in data['FullAccess']:
             try:
                 await request.accept()
-                print(f" [PYBOT] [{getTime()}] Accepted friend request from: {request.display_name}")
+                print(f"   [{getTime()}] Accepted friend request from: {request.display_name}")
             except Exception as e:
                 pass
         else:
-            print(f" [PYBOT] [{getTime()}] Never accepted friend request from: {request.display_name}")
+            print(f"  [{getTime()}] Never accepted friend request from: {request.display_name}")
 
 @client.event
 async def event_party_member_join(member):
     if client.user.display_name != member.display_name:
-        print(f" [PYBOT] [{getTime()}] {member.display_name} has joined the lobby.")
+        print(f"  [{getTime()}] {member.display_name} has joined the lobby.")
 
 @client.event
 async def event_friend_message(message):
     args = message.content.split()
     split = args[1:]
     joinedArguments = " ".join(split)
-    print(' [PYBOT] [' + getTime() + '] {0.author.display_name}: {0.content}'.format(message))
+    print('  [' + getTime() + '] {0.author.display_name}: {0.content}'.format(message))
 
     if "!skin" in args[0].lower():
         if message.author.display_name in data['BlockList']:
